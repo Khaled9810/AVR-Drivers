@@ -6,7 +6,7 @@
 *
 * Description: DIO REGISTERS for Atmega32
 *
-* Author: Khlaed Shaaban
+* Author: Khaled Shaaban
 *
 ********************************************/
 
