@@ -2,7 +2,7 @@
  *
  * Module: DIO
  *
- * File Name: DIO.h
+ * File Name: DIO.c
  *
  * Description: DIO source File
  *
