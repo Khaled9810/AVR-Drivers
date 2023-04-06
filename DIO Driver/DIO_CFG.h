@@ -6,7 +6,7 @@
 *
 * Description: configurations for ATmega32
 *
-* Author: Khlaed Shaaban
+* Author: Khaled Shaaban
 *
 ********************************************/
 
