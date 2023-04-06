@@ -154,7 +154,7 @@ return pin_value;
  *
  *******************************************************************************/
 
-uint8 DIO_GetPin(uint8 port,uint8 pin_num){
+uint8 DIO_GetPinDirection(uint8 port,uint8 pin_num){
 
  uint8 yourport;
  volatile uint8 pin_direction;
@@ -178,7 +178,7 @@ if(BIT_IS_SET(yourport,pin_num)){
     pin_direction=output;
 }
 else{
-    pin_value=input;
+    pin_direction=input;
 }
 
 return pin_direction;
