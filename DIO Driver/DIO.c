@@ -20,7 +20,7 @@
  *
  * parameters(in): -port    -pin number      -direction
  *
- * parameters(out): -nine
+ * parameters(out): -none
  *
  * Return type: void
  *
