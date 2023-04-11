@@ -20,34 +20,35 @@
  *
  * parameters(in): -port    -pin number      -direction
  *
- * parameters(out): -none
+ * parameters(out): -nine
  *
  * Return type: void
  *
  *******************************************************************************/
  void DIO_SetPinDirection(uint8 port,uint8 pin_num,uint8 direction){
 
-    uint8 yourport;
+    volatile uint8* yourport=NULL;
+
 switch(port){
   case port_A:
-       yourport=DDRA;
+       yourport=&DDRA;
         break;
   case Port_B:
-        yourport=DDRB;
+        yourport=&DDRB;
         break;
   case port_C:
-        yourport=DDRC;
+        yourport=&DDRC;
         break;
    case Port_D:
-        yourport=DDRD;
+        yourport=&DDRD;
         break;
 }
 
 if(direction==output){
-    SET_BIT(yourport,pin_num);
+    SET_BIT(*yourport,pin_num);
 }
 else{
-    CLEAR_BIT(yourport,pin_num);
+    CLEAR_BIT(*yourport,pin_num);
 }
 
 
@@ -69,28 +70,28 @@ else{
 
  void DIO_SetPinValue(uint8 port,uint8 pin_num,uint8 value){
 
-     uint8 yourport;
+    volatile uint8* yourport=NULL;
 
 switch(port){
     case port_A:
-        yourport=PORTA;
+        yourport=&PORTA;
         break;
     case Port_B:
-        yourport=PORTB;
+        yourport=&PORTB;
         break;
     case port_C:
-        yourport=PORTC;
+        yourport=&PORTC;
         break;
     case Port_D:
-        yourport=PORTD;
+        yourport=&PORTD;
         break;
 }
 
 if(value==high){
-    SET_BIT(yourport,pin_num);
+    SET_BIT(*yourport,pin_num);
 }
 else{
-    CLEAR_BIT(yourport,pin_num);
+    CLEAR_BIT(*yourport,pin_num);
 }
 
  }
@@ -111,25 +112,25 @@ else{
 
 uint8 DIO_GetPinValue(uint8 port,uint8 pin_num){
 
- uint8 yourport;
- volatile uint8 pin_value;
+    volatile uint8* yourport=NULL;
+ volatile uint8 pin_value=0;
 
 switch(port){
     case port_A:
-        yourport=PINA;
+        yourport=&PINA;
         break;
     case Port_B:
-        yourport=PINB;
+        yourport=&PINB;
         break;
     case port_C:
-        yourport=PINC;
+        yourport=&PINC;
         break;
     case Port_D:
-        yourport=PIND;
+        yourport=&PIND;
         break;
 }
 
-if(BIT_IS_SET(yourport,pin_num)){
+if(BIT_IS_SET(*yourport,pin_num)){
     pin_value=high;
 }
 else{
@@ -156,25 +157,25 @@ return pin_value;
 
 uint8 DIO_GetPinDirection(uint8 port,uint8 pin_num){
 
- uint8 yourport;
- volatile uint8 pin_direction;
+    volatile uint8* yourport=NULL;
+ volatile uint8 pin_direction=0;
 
 switch(port){
     case port_A:
-        yourport=DDRA;
+        yourport=&DDRA;
         break;
     case Port_B:
-        yourport=DDRB;
+        yourport=&DDRB;
         break;
     case port_C:
-        yourport=DDRC;
+        yourport=&DDRC;
         break;
     case Port_D:
-        yourport=DDRD;
+        yourport=&DDRD;
         break;
 }
 
-if(BIT_IS_SET(yourport,pin_num)){
+if(BIT_IS_SET(*yourport,pin_num)){
     pin_direction=output;
 }
 else{
@@ -202,24 +203,24 @@ return pin_direction;
 
  void DIO_SetPortValue(uint8 port,uint8 value){
 
-    uint8 yourport;
+    volatile uint8* yourport=NULL;
 
 switch(port){
     case port_A:
-        yourport=PORTA;
+        yourport=&PORTA;
         break;
     case Port_B:
-        yourport=PORTB;
+        yourport=&PORTB;
         break;
     case port_C:
-        yourport=PORTC;
+        yourport=&PORTC;
         break;
     case Port_D:
-        yourport=PORTD;
+        yourport=&PORTD;
         break;
 }
 
- yourport=value;
+ *yourport=value;
 
 
  }
@@ -241,24 +242,24 @@ switch(port){
 
  void DIO_SetPortDirection(uint8 port,uint8 direction){
 
-    uint8 yourport;
+    volatile uint8* yourport=NULL;
 
 switch(port){
     case port_A:
-        yourport=DDRA;
+        yourport=&DDRA;
         break;
     case Port_B:
-        yourport=DDRB;
+        yourport=&DDRB;
         break;
     case port_C:
-        yourport=DDRC;
+        yourport=&DDRC;
         break;
     case Port_D:
-        yourport=DDRD;
+        yourport=&DDRD;
         break;
 }
 
- yourport=direction;
+ *yourport=direction;
 
 
  }
@@ -280,23 +281,23 @@ switch(port){
 
 void DIO_GetPortValue(uint8 port,volatile uint8* ptr_value){
 
- uint8 yourport;
+    volatile uint8* yourport=NULL;
 
 switch(port){
     case port_A:
-        yourport=PINA;
+        yourport=&PINA;
         break;
     case Port_B:
-        yourport=PINB;
+        yourport=&PINB;
         break;
     case port_C:
-        yourport=PINC;
+        yourport=&PINC;
         break;
     case Port_D:
-        yourport=PIND;
+        yourport=&PIND;
         break;
 }
 
- *ptr_value=yourport;
+ *ptr_value=*yourport;
 
 }
