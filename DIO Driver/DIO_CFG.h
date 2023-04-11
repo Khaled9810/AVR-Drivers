@@ -53,5 +53,20 @@ output
 }pins_direction;
 
 
+typedef enum{
+    	
+	port_input,
+	port_output=255
+		
+}port_directions;
+
+
+
+typedef enum{
+	
+	port_low,
+	port_high=255
+	
+}port_value;
 
 #endif  /*DIO_CFG_H*/
